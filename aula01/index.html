@@ -10,6 +10,13 @@
         <p>Comentário sobre JS</p>
         <!-- adicionar script no final, após a tag body. boas práticas -->
         <script>
+        
+            // Função anônima
+            
+            Element.prototype.remove = function() {
+                this.parentNode.removeChild(this);
+            }
+            
             // Exibe um texto na tela dentro de um alerta
             // window.alert('ok');
             
@@ -30,6 +37,12 @@
                 div.style.cssFloat = 'left';
                 //imprimindo no browser
                 document.body.appendChild(div);
+            }
+            
+            var divs = document.getElementsByTagName('div');
+            var lenght = divs;
+            for (var i = 0; i < length; i++) {
+                divs[i].remove();
             }
             
             // criando verificador JS. checando se existe mais do que 20 divs e imprimindo resultados em elementos h1
