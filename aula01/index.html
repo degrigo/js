@@ -8,6 +8,31 @@
     
         <h1>Aula JS</h1>
         <p>Comentário sobre JS</p>
+        <!-- adicionar script no final, após a tag body. boas práticas -->
+        <script>
+            // Exibe um texto na tela dentro de um alerta
+            // window.alert('ok');
+            
+            var i = 0;
+            for (i = 0; i <= 20; i++) {
+                //exibindo resultados do for com document.writeln mostrando o resultado com espaço, sem exibir a quebra de linha no fronmt do navegador
+                //document.writeln(i);
+                
+                //criando elementos dinamicamente e adicionando cor, largura, altura
+                var div = document.createElement('div');
+                //atenção ao camelCase
+                div.style.backgroundColor = 'red';
+                div.style.width = '100px';
+                div.style.height = '100px';
+                div.style.marginLeft = '5px';
+                div.style.marginTop = '5px';
+                // float é uma palavra reservada do Js; usar cssFloat
+                div.style.cssFloat = 'left';
+                //imprimindo no browser
+                document.body.appendChild(div);
+            }
+            
+        </script>
     
     </body>
 </html>
