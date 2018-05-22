@@ -8,8 +8,23 @@
     
         <h1>Aula JS</h1>
         <p>Comentário sobre JS</p>
+        <div>
+            <h3>A</h3>
+            <h3>B</h3>
+            <h3>C</h3>
+            <h3>D</h3>
+            <h3>E</h3>
+        </div>
         <!-- adicionar script no final, após a tag body. boas práticas -->
         <script>
+            
+            // Exercicio 1
+            var h3s = document.getElementsByTagName('h3');
+            console.log(h3s);
+            for(i = 0; i < h3s.length; i++) {
+                //console.log(h3s[i]);
+                h3s[i].textContent = i;
+            }
             // só aceita valores o array
             var seq = ['PHP', 1, 'Java', 4.5];
             // adicionando valores no final do array com push
