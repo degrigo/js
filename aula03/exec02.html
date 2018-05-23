@@ -7,13 +7,14 @@
     <body>    
         <script>
                     
-            // passando valor de variável global para escopo da função l
-            var Zebra = function() {
+            var Zebra = function(peso) {
+                this.peso = peso;
             };
             
-            var zebrinha = new Zebra();
+            var zebrinha = new Zebra(250);
+            var potrinho = new Zebra(150);
             
-            console.log(zebrinha);
+            console.log(zebrinha, potrinho);
 
         </script>    
     </body>
