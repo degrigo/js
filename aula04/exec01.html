@@ -10,6 +10,10 @@
             
             var Generator = function(prop){
             //criar uma variável que recebe elemento h1
+            if(!prop.tipo){
+                console.log('Não entrou');
+                return;
+            }
             var h1 = document.createElement(prop.tipo);
             
               for(var p in prop){
@@ -19,17 +23,22 @@
                         console.log(prop[p][p2]);
                     }
                 } else {
+                    // a propppriedade será adicionada como colchestes e o valor com prop[p]
+                    h1[p] = prop[p];
                     console.log(prop[p]);
                     }                  
-                }  
+                }
+                //retornando um objeto div
+                return h1;
             };
             
-            var obj = {tipo : 'h1', bgcolor : '#ff0000', mouse : 'logitech'};
+            var obj = {tipo : 'h1', id : 'h1a'};
             // obbjeto dentro de um objeto
             obj.style = {display : 'fixed'};
             // adicionando outra propriedade dentro de style
             obj.style.color = 'blue';
             var g = new Generator(obj);
+            console.log(g);
 
         </script>    
     </body>
