@@ -7,24 +7,43 @@
     <body>    
         <script>
             // classe JS
-            var Div = function(width, height, color) {
+            var Div = function(width, height, color, margin) {
                 this.element = document.createElement('div');
                 this.element.style.height = height;
                 this.element.style.width = width;
                 this.element.style.backgroundColor = color;
+                this.element.style.margin = margin;
                 //criando um método
                 this.insertElement = function() {
                     //adicionando elemento html por método
                     document.body.appendChild(this.element);
                 };
+                // inserindo texto dentro da div
+                this.insertText = function(text) {
+                    // definindo parâmetros e passando ele dentro da condição para criar o texto dinamicamente
+                    this.element.textContent = text;
+                };
+                // criando elemento dentro de outro elemento
+                this.insertChild = function(element) {
+                    // inserindo elemento com appendChild
+                    // printando outro elemento dentro de um existente
+                    this.element.appendChild(element);
+                };
                 
             };
             
-            //criando prropriedades da div
-            var div = new Div('100px', '100px', '#ff0000');
+            //criando propriedades da div
+            var div = new Div('100px', '100px', '#ff0000', '0 5px 5px 0');
+            var header = new Div('200px', '200px', '#cecece', '0 5px 5px 0');
+            var text = new Div();
             
             //inserindo elemento no html
             div.insertElement();
+            header.insertElement();
+            div.insertText('teste');
+            var h1 = document.createElement('h1');
+            h1.textContent = "Meu H1";
+            div.insertChild(h1);
             
             console.log(div);
 
