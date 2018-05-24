@@ -21,7 +21,9 @@
                 // inserindo texto dentro da div
                 this.insertText = function(text) {
                     // definindo parâmetros e passando ele dentro da condição para criar o texto dinamicamente
-                    this.element.textContent = text;
+                    // usanddo createTextNode para texto
+                    text = document.createTextNode(text);
+                    this.element.appendChild(text);
                 };
                 // criando elemento dentro de outro elemento
                 this.insertChild = function(element) {
