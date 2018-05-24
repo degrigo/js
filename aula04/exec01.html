@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+            <div class="test" id="div_1" title="Minha div"></div>
+        <script>
+            
+            var Generator = function(prop){
+            //criar uma variável que recebe elemento h1
+            var h1 = document.createElement(prop.tipo);
+            
+              for(var p in prop){
+                if(p == 'style') {
+                    for(var p2 in prop[p]){
+                        //prop[p] style || p2 é o color
+                        console.log(prop[p][p2]);
+                    }
+                } else {
+                    console.log(prop[p]);
+                    }                  
+                }  
+            };
+            
+            var obj = {tipo : 'h1', bgcolor : '#ff0000', mouse : 'logitech'};
+            // obbjeto dentro de um objeto
+            obj.style = {display : 'fixed'};
+            // adicionando outra propriedade dentro de style
+            obj.style.color = 'blue';
+            var g = new Generator(obj);
+
+        </script>    
+    </body>
+</html>

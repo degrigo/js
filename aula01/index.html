@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+    
+        <h1>Aula JS</h1>
+        <p>Comentário sobre JS</p>
+        <!-- adicionar script no final, após a tag body. boas práticas -->
+        <script>
+        
+            // Função anônima
+            
+            Element.prototype.remove = function() {
+                this.parentNode.removeChild(this);
+            }
+            
+            // Exibe um texto na tela dentro de um alerta
+            // window.alert('ok');
+            
+            var i = 0;
+            for (i = 0; i <= 20; i++) {
+                //exibindo resultados do for com document.writeln mostrando o resultado com espaço, sem exibir a quebra de linha no fronmt do navegador
+                //document.writeln(i);
+                
+                //criando elementos dinamicamente e adicionando cor, largura, altura
+                var div = document.createElement('div');
+                //atenção ao camelCase
+                div.style.backgroundColor = 'red';
+                div.style.width = '100px';
+                div.style.height = '100px';
+                div.style.marginLeft = '5px';
+                div.style.marginTop = '5px';
+                // float é uma palavra reservada do Js; usar cssFloat
+                div.style.cssFloat = 'left';
+                //imprimindo no browser
+                document.body.appendChild(div);
+            }
+            
+            var divs = document.getElementsByTagName('div');
+            var length = divs;
+            for (var i = 0; i < length; i++) {
+                divs[i].remove();
+            }
+            
+            // criando verificador JS. checando se existe mais do que 20 divs e imprimindo resultados em elementos h1
+            
+            // Setando outro tipo de if com JS, retirando os colchetes, imprimindo o conteúdo do h1
+            var h1 = document.createElement('h1');
+            // imprimindo resultado de h1 dentro de console log
+            console.log(h1);
+            if (i >= 20)                 
+                h1.textContent = 'Aula JS';
+            else
+                // jogando conteúdo dentro de um elemento com textContent
+                h1.textContent = ':/';
+            //criando elemento h1 dentro do body
+            document.body.appendChild(h1);
+            
+        </script>
+    
+    </body>
+</html>

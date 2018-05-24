@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>    
+        <script>
+                    
+            // passando valor de variável global para escopo da função l
+            var zebra = function(l) {
+                for(var i = 0; i < l.length; i++){
+                    //acessando dados do array
+                    console.log(l[i]);
+                }
+            };
+            
+            var lista = ['oi', 10, {nome: 'Tadeu'}];
+            
+            zebra(lista);
+            
+            // retornando função zebra dentro do console
+            console.log(zebra);
+            
+            var n = 19;
+            var obj = {numero: 19};
+            
+            obj.algumacoisa = 'outra coisa';
+            
+            function minha_funcao() {
+                interna = [1, 2, 3, 4, 5];
+                console.log(n);
+                console.log(obj);
+            }
+            
+        </script>    
+    </body>
+</html>

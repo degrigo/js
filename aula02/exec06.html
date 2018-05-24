@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>    
+        <h4></h4>
+        <h4></h4>
+        <h4></h4>
+        <h4></h4>
+        <script>
+            //Desenvolver usando console.log. sempre verificar se a função está retornando os valores setados
+            //sempre setar valores em variáveis
+            function write_tag(tag, text) {
+                var tags = document.getElementsByTagName(tag);
+                // console.log(tags)
+                for (var i = 0; i < tags.length; i++) {
+                    tags[i].textContent = text;
+                }
+            }          
+          write_tag('h4', 'Eita');
+        </script>    
+    </body>
+</html>
