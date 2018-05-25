@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>        
+            
+        var exemplo = function(chazinho) {
+            var persistente = true;
+            var duradouro = 'Efêmero';
+            // padrão de senvolvimento that é usado para o objeto que será retornado
+            var that = {}; // objeto
+            that.minhanossa = function() {
+              document.write(duradouro);
+              document.write(chazinho);
+            };
+            return that;
+        }
+        
+        var obj = exemplo('Verde');
+        obj.minhanossa();
+        var obj2 = exemplo('Mate');
+        obj2.minhanossa();
+
+        </script>    
+    </body>
+</html>
