@@ -39,9 +39,13 @@
             // adicionando outra propriedade dentro de style
             obj.style.color = 'blue';
             var g = generator(obj);
+            // adcionando objeto de parágrafo
+            var p = generator({tipo : 'p', style : {fontWeight : 'bold'}});
             //adicionado elemento no browser            
             g.appendChild(document.createTextNode('Ok!'));
             document.body.appendChild(g);
+            p.appendChild(document.createTextNode('Parágrafo'));
+            document.body.appendChild(p);
             console.log(g);
 
         </script>    
