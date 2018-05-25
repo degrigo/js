@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <div id="main"></div>
+        <script>
+            // adicionamento elemento p dentro da div
+            var fabrica = function(estilo) {                
+                return function(tipo) {
+                    var elemento = document.createElement(tipo);
+                    for(var s in estilo) {
+                        // s é o valor de backgroundColor
+                        elemento.style[s] = estilo[s];
+                    }
+                    elemento.adicionarEm = function(id){
+                        document.getElementById(id).appendChild(elemento);
+                    };
+                    return elemento;
+                }
+            };
+        
+            var propriedades = {
+                backgroundColor : '#ff0000',
+                fontFamily : 'sans-serif',
+                fontWeight : 'bold'
+                };
+            var gerador = fabrica(propriedades);
+            var p = gerador('p');
+            var h1 = gerador('h1');
+            p.adicionarEm('main');
+            h1.adicionarEm('main');       
+            
+        </script>    
+    </body>
+</html>
