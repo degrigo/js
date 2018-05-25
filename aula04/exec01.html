@@ -40,7 +40,7 @@
             obj.style.color = 'blue';
             var g = generator(obj);
             // adcionando objeto de parágrafo
-            var p = generator({tipo : 'p', style : {fontWeight : 'bold'}});
+            var p = generator({tipo : 'p', style : {fontWeight : 'bold', fontSize : '30px'}});
             //adicionado elemento no browser            
             g.appendChild(document.createTextNode('Ok!'));
             document.body.appendChild(g);
