@@ -17,7 +17,17 @@
                     }
                     elemento.adicionarEm = function(id){
                         document.getElementById(id).appendChild(elemento);
+                        return elemento;
                     };
+                    elemento.adicionar = function(node) {
+                        elemento.appendChild(node);
+                        return elemento;
+                    }
+                    elemento.adicionarTexto = function(texto) {
+                        texto = document.createTextNode(texto);
+                        elemento.appendChild(texto);
+                        return elemento;
+                    }
                     return elemento;
                 }
             };
@@ -31,8 +41,15 @@
             var p = gerador('p');
             var h1 = gerador('h1');
             p.adicionarEm('main');
-            h1.adicionarEm('main');       
-            
+            //adicionando p dentro de h1
+            //h1.adicionar(p);
+            //h1.adicionarEm('main');
+            //trabalhando com casquetamento. retornando o próprio objeto que foi chamado
+            h1.adicionar(p)
+                .adicionarEm('main')
+                .adicionarTexto('tadeu')
+                .adicionar(gerador('br'))
+                .adicionar(gerador('u').adicionarTexto('Sublinhado'));
         </script>    
     </body>
 </html>
