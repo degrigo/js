@@ -9,22 +9,30 @@
 //$('tbody'); //seleciona
 //$('<tr>'); // criando elemento
 //append adiciona o elemento
+// não precisa fechar o elemento html. ele cria o final da tag sozinho
+
+var css_class = 'cell100 column';
 
 $('tbody')
     .append($('<tr>')
             .append($('<td>')
-                    .append('Coluna 1').addClass('cell100 column1')
+                    // adicionando texto e classe
+                    .append('Coluna 1').addClass(css_class + '1')
                    )
             .append($('<td>')
-                    .append('Coluna 2').addClass('cell100 column2')
+                    .append('Coluna 2').addClass(css_class + '2')
                    )
             .append($('<td>')
-                    .append('Coluna 3').addClass('cell100 column3')
+                    .append('Coluna 3').addClass(css_class + '3')
                    )
             .append($('<td>')
-                    .append('Coluna 4').addClass('cell100 column4')
+                    .append('Coluna 4').addClass(css_class + '4')
                    )
             .append($('<td>')
-                    .append('Coluna 5').addClass('cell100 column5')
+                    .addClass(css_class + '5')
+                        .append($('<i>').addClass('fa fa-plus-circle'))
+                        .append($('<i>').addClass('fa fa-ban'))
                    )            
             );
+    
+    
