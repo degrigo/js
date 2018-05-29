@@ -12,16 +12,17 @@
 // não precisa fechar o elemento html. ele cria o final da tag sozinho
 
 var data = [
-    ["jQuery","Biblioteca","16:30 PM - 22:30 AM'","Hector Vido","13"],
-    ["Linux","Sistema","12:00 PM - 21:30 AM'","Jonathan Alves","12"],
-    ["Python","Linguagem","14:30 PM - 20:30 AM'","Lucas Beyeler","08"],
-    ["Segurança","Pentest","15:00 PM - 16:30 AM'","Leonardo Mendes","09"],
-    ["Yoga","Meditação","17:30 PM - 10:30 AM'","Paramahansa Yogananda","16"],
-    ["Linux","Boas Práticas","18:30 PM - 09:30 AM'","Julio Balott","33"],
-    ["Linux","Mas Práticas","22:00 PM - 08:30 AM'","Gabriel Policante","05"]
+    ["jQuery","Biblioteca","16:30 PM - 22:30 AM'","Hector Vido",""],
+    ["Linux","Sistema","12:00 PM - 21:30 AM'","Jonathan Alves",""],
+    ["Python","Linguagem","14:30 PM - 20:30 AM'","Lucas Beyeler",""],
+    ["Segurança","Pentest","15:00 PM - 16:30 AM'","Leonardo Mendes",""],
+    ["Yoga","Meditação","17:30 PM - 10:30 AM'","Paramahansa Yogananda",""],
+    ["Linux","Boas Práticas","18:30 PM - 09:30 AM'","Julio Balott",""],
+    ["Linux","Mas Práticas","22:00 PM - 08:30 AM'","Gabriel Policante",""]
 ];
 
 var css_class = 'cell100 column';
+var tbody = $('tbody');
 
 var i1 = $('<i>').addClass('fa fa-plus-circle').mouseover(function(e) {
     alert('ok');
@@ -42,7 +43,7 @@ for(var i = 0; i < data.length; i++){
         var td =  $('<td>').append(data[i][t]).addClass(css_class + (t + 1));
         tr.append(td);    
     }
-    $('tbody').append(tr);
+    tbody.append(tr);
 }
 
 //i1.off('mouseover') remove o evento
