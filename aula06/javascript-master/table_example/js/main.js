@@ -21,16 +21,6 @@ var data = [
     ["Linux","Mas Práticas","22:00 PM - 08:30 AM'","Gabriel Policante","05"]
 ];
 
-// var definindo que a variável está dentro do for somente.
-// percorrendo arrays
-for(var i = 0; i < data.length; i++){
-    //console.log(data[i]);
-    // percorrendo valores por índices dos arrays
-    for(var t = 0; t < data[i].length; t++){
-        console.log(data[i][t]);
-    }
-}
-
 var css_class = 'cell100 column';
 
 var i1 = $('<i>').addClass('fa fa-plus-circle').mouseover(function(e) {
@@ -40,8 +30,25 @@ var i1 = $('<i>').addClass('fa fa-plus-circle').mouseover(function(e) {
 var i2 = $('<i>').addClass('fa fa-ban').click(function(e) {
     alert('ok2');
     });
+
+// var definindo que a variável está dentro do for somente.
+// percorrendo arrays
+for(var i = 0; i < data.length; i++){
+    //console.log(data[i]);
+    // percorrendo valores e índices dos arrays
+    var tr = $('<tr>');
+    for(var t = 0; t < data[i].length; t++){
+        ///console.log(data[i][t]);
+        var td =  $('<td>').append(data[i][t]).addClass(css_class + (t + 1));
+        tr.append(td);    
+    }
+    $('tbody').append(tr);
+}
+
 //i1.off('mouseover') remove o evento
 
+
+/*
 $('tbody')
     .append($('<tr>')
             .append($('<td>')
@@ -64,5 +71,5 @@ $('tbody')
                         .append(i2)
                    )            
             );
-    
+    */
     
