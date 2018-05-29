@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <div id="main"></div>
+        <script>
+            // adicionamento elemento p dentro da div
+            var fabrica = function(estilo) {                
+                return function(tipo) {
+                    var elemento = document.createElement(tipo);
+                    for(var s in estilo) {
+                        // s é o valor de backgroundColor
+                        elemento.style[s] = estilo[s];
+                    }
+                    elemento.adicionarEm = function(id){
+                        document.getElementById(id).appendChild(elemento);
+                        return elemento;
+                    };
+                    elemento.adicionar = function(node) {
+                        elemento.appendChild(node);
+                        return elemento;
+                    }
+                    elemento.adicionarTexto = function(texto) {
+                        texto = document.createTextNode(texto);
+                        elemento.appendChild(texto);
+                        return elemento;
+                    }
+                    return elemento;
+                }
+            };
+        
+            var propriedades = {
+                backgroundColor : '#ff0000',
+                fontFamily : 'sans-serif',
+                fontWeight : 'bold'
+                };
+            var gerador = fabrica(propriedades);
+            var p = gerador('p');
+            var h1 = gerador('h1');
+            p.adicionarEm('main');
+            //adicionando p dentro de h1
+            //h1.adicionar(p);
+            //h1.adicionarEm('main');
+            //trabalhando com casquetamento. retornando o próprio objeto que foi chamado
+            h1.adicionar(p)
+                .adicionarEm('main')
+                .adicionarTexto('tadeu')
+                .adicionar(gerador('br'))
+                .adicionar(gerador('u').adicionarTexto('Sublinhado'));
+        </script>    
+    </body>
+</html>

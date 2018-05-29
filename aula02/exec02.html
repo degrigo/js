@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+    
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        <div class="js">-</div>
+        
+        <script>
+            // Pegando elementos pela classe js com getElementsByClassName
+            var div = document.getElementsByClassName('js');
+            console.log(div);
+            //  lenght é um método que imprime a quantidade de itens presente ou caracteres
+            for(i = 0; i < div.length; i++) {
+                console.log(div[i]);
+                div[i].textContent = i;
+            }               
+        </script>
+    
+    </body>
+</html>

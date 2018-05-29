@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <div style="background-color: blue; width: 50px; height:50px;"></div>
+        <div style="background-color: orange; width: 50px; height:50px;"></div>
+        <div style="background-color: purple; width: 50px; height:50px;"></div>
+        <div style="background-color: gray; width: 50px; height:50px;"></div>
+        <script>
+            var divs = document.getElementsByTagName('div');
+            console.log(divs);
+            //fazer um for para a varrriável divs
+            // escrever a cor com console log
+            for(var i = 0; i < divs.length; i++){
+                console.log(divs[i].style.backgroundColor);
+                divs[i].onclick = function(i) {
+                    ////printando no cosole o reultado do click                    
+                    var z = 'Camomila' + (i + 1);
+                    return function() { // função anônima
+                        alert('Eita...' + i);
+                        console.log(z);
+                    }                    
+                }(i);
+            }
+            for(var i = 0; i < divs.length; i++){
+                console.log(divs[i].style.backgroundColor);
+                divs[i].addEventListener('click', function(i) {
+                    return function() {
+                            //adicionando cor ao evento de click
+                            this.style.backgroundColor = 'orange';
+                            ////removendo divs
+                            this.parentNode.removeChild(this);
+                        };                    
+                }(i));
+            }
+            window.addEventttListener('load', function() {
+               alert(document.getElementById('span1').textContent); 
+            });
+            
+        </script>
+        <span id="span1">Eu sou um span</span>
+    </body>
+</html>

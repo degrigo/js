@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>JavaScript - Events with closure</title>
+        <style>
+            html {
+                font-family: sans-serif;
+            }
+            html, body {
+                height:100%;
+            }
+            table, td, tr {
+                border:1px solid #c0c0c0;
+                border-collapse: collapse;
+            }
+            td {
+                width: 10px;
+                height: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Javascript puro</h1>
+        <h2>Aperte a tecla "C" para colorir, ou descolorir tudo em um intervalo de <i id="interval">200</i> milisegundos</h2>
+        <h3>Use "A" ou "D" para aumentar ou diminuir o intervalo</h3>
+        <script>
+            
+            var constants = {
+                LINES : 50,
+                COLUMNS : 100,
+                INTERVAL : 200
+            };
+            
+            // Math.random() retorna um valor entre 0 e 1
+            // Math.floor() retorna o maior inteiro menor ou igual ao parâmetro
+            // letter é uma string, e strings podem ser acessadas pelos seus indices
+            // o resultado de Math.floor(Math.random() * 16) é um número entre 0 e 16
+            var colorize = function() {
+                var letters = '0123456789ABCDEF';   // define todos os valores hexadecimais
+                var color = '#';                    // inicia a variável color, pois usaremos +=
+                for (var i = 0; i < 6; i++)         // itera seis vezes para criar no formato ff,ff,ff
+                    color += letters[Math.floor(Math.random() * 16)];
+                return color;                       // retorna a cor em hexadecimal, pronta para ser usada
+            };
+            
+            // garante que todos eventos acontecerão após todo o HTML ter sido carregado
+            // inclusive o evento que escuta o teclado, que é adicionado depois do laço que
+            // adiciona a tabela, pois ele não pode ocorrer caso a tabela ainda não
+            // tenha sido gerada
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                var table = document.createElement('table');
+                for(var i = 0; i < constants.LINES; i++) {
+                    var tr = document.createElement('tr');
+                    for(var x = 0; x < constants.COLUMNS; x++)
+                        tr.appendChild(document.createElement('td'));
+                    table.appendChild(tr);
+                }
+                document.body.appendChild(table);
+                
+                document.addEventListener('keypress', function() {
+                    var colorful = false; // a variavel colorful estará disponivel para função abaixo
+                    var tds = document.getElementsByTagName('td'); // esta também
+                    var span = document.getElementById('interval');
+                    return function(e) {  // e não precisará virar global, por causa do fechamento
+                        var key = e.charCode || e.keyCode; // compatibilidade com navegadores antigos
+                        if(key == 67 || key == 99) {
+                            // um bom exemplo de uma função anônima, 
+                            // para não fazer verificações a cada iteração, prejudicando a performance
+                            // ou separar em dois laços for, prejudicando a legibilidade
+                            // usamos uma função anônima que é diferente para cada valor de colorful
+                            var fnc = colorful ? function() {return '';} : function() {return colorize();};
+                            tds[0].style.backgroundColor = fnc(); // inicia a primeira troca de cor
+                            var current = 0; // seta a variável que controlará a td atual
+                            var next = function() { // cria uma função que será chamada recursivamente
+                                if(++current < tds.length) { // garante que não executaremos mais timeouts que o limite
+                                    setTimeout(function() { // executa dada função em X milisegundos
+                                        tds[current].style.backgroundColor = fnc(); // troca a cor
+                                        next(); // chama a ela mesma novamente
+                                    }, constants.INTERVAL);
+                                }
+                            };
+                            next(); // inicia o loop recursivo, que será controlado pelo valor de current
+                            // inverte o valor de colorful e atribui a mesma variável, se true, vira false e vice-versa
+                            colorful = !colorful;
+                        } else if ([65, 97].indexOf(key) != -1) {
+                            constants.INTERVAL -= 10;
+                            if(constants.INTERVAL <= 0)
+                                constants.INTERVAL = 10;
+                            span.textContent = constants.INTERVAL;
+                        } else if ([68, 100].indexOf(key) != -1) {
+                            constants.INTERVAL += 10;
+                            span.textContent = constants.INTERVAL;
+                        }
+                    };
+                }());
+            });
+            
+        </script>
+    </body>
+</html>
