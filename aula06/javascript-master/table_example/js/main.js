@@ -13,6 +13,12 @@
 
 var css_class = 'cell100 column';
 
+var i1 = $('<i>').addClass('fa fa-plus-circle').click();
+var i2 = $('<i>').addClass('fa fa-ban').click(function(e) {
+    
+    });
+
+
 $('tbody')
     .append($('<tr>')
             .append($('<td>')
@@ -30,8 +36,9 @@ $('tbody')
                    )
             .append($('<td>')
                     .addClass(css_class + '5')
-                        .append($('<i>').addClass('fa fa-plus-circle'))
-                        .append($('<i>').addClass('fa fa-ban'))
+                        .append(i1)
+                        .append(' ')
+                        .append(i2)
                    )            
             );
     
