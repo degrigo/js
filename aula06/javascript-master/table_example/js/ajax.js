@@ -1,22 +1,35 @@
-var request = new XMLHttpRequest();
+//definindo por jQuery
 
-//adicionando método onload
-// variável response é a resposta do servidor que a função recebe como parâmetro 
-request.onload = function(response) {
-    // acesssando propriedade responseText
-    //console.log(response.target.responseText);
-    
-    // eval interpreta o texto do array
-    var json = eval(response.target.responseText);
-    console.log(json);
-};
+//criando objeto literal
 
-//abrindo requisição open é o método do objeto
-// verbo, url, async
-request.open(
-        'get',
-        'http://phpypesh.com.br/606/search.php',
-         true
-        ); // tipo, url, async
-//post
-request.send();
+var css_class = 'cell100 column';
+
+setInterval(function() { //SETANDO INTERVALO DE EXECUÇÃO
+    $.ajax({
+        //type seta o verbo
+        type    : 'GET',
+        // setando url
+        url     : 'http://phpypesh.com.br/606/search.php',
+        // beforeSend antes de enviar
+        beforeSend : function() {
+            console.log('Carregando...');
+            }        
+    }).done(function(data) { // parametro data
+        //console.log(data);
+        
+        //faça um for para percorrer os dados de data
+        var tbody = $('tbody');
+        for(var i = 0; i < data.length; i++){
+             var tr = $('<tr>');
+            for(var t = 0; t < data[i].length; t++){
+                //console.log(data[i][t]);
+                tr.append($('<td>')
+                    .append(data[i][t])
+                    .addClass('cell1000 column' + (t + 1)));
+            }            
+            tr.append('<td class="cell100 column5">');
+            tbody.append(tr);
+        }
+        
+     }); // finalizando a requisiição com done
+}, 5000);
