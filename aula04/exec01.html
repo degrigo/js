@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+            <div class="test" id="div_1" title="Minha div"></div>
+        <script>
+            
+            var generator = function(prop){
+            //criar uma variável que recebe elemento h1
+            if(!prop.tipo){
+                console.log('Não entrou');
+                return;
+            }
+            var h1 = document.createElement(prop.tipo);
+            // delete prop.tipo; deletando propriedade dentro do objeto
+              for(var p in prop){
+                if(p == 'style') {
+                    for(var s in prop[p]){
+                        //prop[p] style || p2 é o color
+                        h1[p][s] = prop[p][s];
+                        //console.log(prop[p][p2]);
+                    }
+                } else {
+                    // a propppriedade será adicionada como colchetes e o valor com prop[p] (style)
+                    h1[p] = prop[p];
+                    console.log(prop[p]);  
+                    }                  
+                }
+                //retornando um objeto div
+                return h1;
+            };
+            
+            var obj = {tipo : 'h1', id : 'h1a'};
+            // obbjeto dentro de um objeto
+            obj.style = {display : 'block'};
+            // adicionando outra propriedade dentro de style
+            obj.style.color = 'blue';
+            var g = generator(obj);
+            // adcionando objeto de parágrafo
+            var p = generator({tipo : 'p', style : {fontWeight : 'bold', fontSize : '30px'}});
+            //adicionado elemento no browser            
+            g.appendChild(document.createTextNode('Ok!'));
+            document.body.appendChild(g);
+            p.appendChild(document.createTextNode('Parágrafo'));
+            document.body.appendChild(p);
+            console.log(g);
+
+        </script>    
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>
+        //        
+        var bonafont = function(param1, param2) {
+            var fnc = function(param3) {
+                try {
+                    console.log(eval(param1+param2+param3));
+                }
+                catch (e) {
+                    console.log(e);
+                }
+            }
+            return fnc;
+        };
+        
+        var call = bonafont(5, 10);
+        call('+'); 
+        
+        </script>    
+    </body>
+</html>

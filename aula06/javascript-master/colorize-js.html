@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>JavaScript - Events with closure</title>
+        <style>
+            html {
+                font-family: sans-serif;
+            }
+            html, body {
+                height:100%;
+            }
+            table, td, tr {
+                border:1px solid #c0c0c0;
+                border-collapse: collapse;
+            }
+            td {
+                width: 10px;
+                height: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Javascript puro</h1>
+        <h2>Aperte a tecla "C" para colorir todos os quadradinhos</h2>
+        <script>
+            
+            var constants = {
+                LINES : 500,
+                COLUMNS : 100
+            };
+            
+            // Math.random() retorna um valor entre 0 e 1
+            // Math.floor() retorna o maior inteiro menor ou igual ao parâmetro
+            // letter é uma string, e strings podem ser acessadas pelos seus indices
+            // o resultado de Math.floor(Math.random() * 16) é um número entre 0 e 16
+            var colorize = function() {
+                var letters = '0123456789ABCDEF';   // define todos os valores hexadecimais
+                var color = '#';                    // inicia a variável color, pois usaremos +=
+                for (var i = 0; i < 6; i++)         // itera seis vezes para criar no formato ff,ff,ff
+                    color += letters[Math.floor(Math.random() * 16)];
+                return color;                       // retorna a cor em hexadecimal, pronta para ser usada
+            };
+            
+            // garente que todos eventos acontecerão após todo o HTML ter sido carregado
+            // inclusive o evento que escuta o teclado, que é adicionado depois do laço que
+            // adiciona a tabela, pois ele não pode ocorrer caso a tabela ainda não
+            // tenha sido gerada
+            document.addEventListener('DOMContentLoaded', function() {
+                var table = document.createElement('table');
+                for(var i = 0; i < constants.LINES; i++) {
+                    var tr = document.createElement('tr');
+                    var x = 0;
+                    while(x++ < constants.COLUMNS) {
+                        var td = document.createElement('td');
+                        td.addEventListener('click', function() {
+                            this.style.backgroundColor = colorize();
+                        });
+                        tr.appendChild(td);
+                    }
+                    table.appendChild(tr);
+                }
+                document.body.appendChild(table);
+                
+                document.addEventListener('keypress', function() {
+                    var colorful = false; // a variavel colorful estará disponivel para função abaixo
+                    var tds = document.getElementsByTagName('td'); // esta também, e é chamada apenas uma vez
+                    return function(e) {  // e não precisará virar global, por causa do fechamento
+                        var key = e.charCode || e.keyCode; // compatibilidade com navegadores antigos
+                        if(key != 67 && key != 99) // se não for a letra "c" ou "C", vá embora
+                            return;
+                        // um bom exemplo de uma função anônima, 
+                        // para não fazer verificações a cada iteração, prejudicando a performance
+                        // ou separar em dois laços for, prejudicando a legibilidade
+                        // usamos uma função anônima que é diferente para cada valor de colorful
+                        var fnc = colorful ? function() {return '';} : function() {return colorize();};
+                        for(var i = 0; i < tds.length; i++)
+                            tds[i].style.backgroundColor = fnc();
+                        // inverte o valor de colorful e atribui a mesma variável, se true, vira false e vice-versa
+                        colorful = !colorful;
+                    };
+                }());
+            });
+            
+        </script>
+    </body>
+</html>

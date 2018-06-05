@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+            <div class="test" id="div_1" title="Minha div"></div>
+        <script>
+            
+            //var obj = {nome : 'Tadeu', telefone : '958589959'};
+            var obj = document.getElementById('div_1');
+            obj.qualquerCoisa = '00';
+            obj.idNumber = 40;
+            obj.pilha = 'Duracell';
+            
+            for(i in obj) {
+
+                // verificando os dados do json com hasOwnProperty
+                // propriedades que eu deeefini e não possuem dependências
+                if(obj.hasOwnProperty(i)){
+                    console.log(obj[i]);
+                }
+                
+                //if(i == 'pilha' || i == 'idNumber' || i == 'qualquerCoisa'){
+                //    console.log(obj[i]);
+                //}
+            }
+            
+            var f = function(params) {
+                for(p in params) {
+                    console.log(p + params[p]);
+                }
+            }
+            f({id : '1', className : 'title', style : ''});
+            
+            // classe JS
+            var Div = function(width, height, color, margin) {
+                this.element = document.createElement('div');
+                this.element.style.height = height;
+                this.element.style.width = width;
+                this.element.style.backgroundColor = color;
+                this.element.style.margin = margin;
+                //criando um método
+                this.insertElement = function() {
+                    //adicionando elemento html por método
+                    document.body.appendChild(this.element);
+                };
+                // inserindo texto dentro da div
+                this.insertText = function(text) {
+                    // definindo parâmetros e passando ele dentro da condição para criar o texto dinamicamente
+                    // usanddo createTextNode para texto
+                    text = document.createTextNode(text);
+                    this.element.appendChild(text);
+                };
+                // criando elemento dentro de outro elemento
+                this.insertChild = function(element) {
+                    // inserindo elemento com appendChild
+                    // printando outro elemento dentro de um existente
+                    this.element.appendChild(element);
+                };
+                
+            };
+
+        </script>    
+    </body>
+</html>

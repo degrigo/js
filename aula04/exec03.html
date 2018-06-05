@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Aula JS</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>        
+        // propriedades privadas dentro do javascript
+        var exemplo = function(props) {
+            id = 1;
+            nome = props.nome;
+            email = props.email;
+            var that = {};
+            that.get_nome = function() {
+                return nome;
+            }
+            that.set_nome = function(n) {
+                nome = n;
+            }
+            return that;
+        };
+        
+        var u = exemplo({nome : 'Tadeu', email : 'degrigo@gmail.com'});
+        u.set_nome('Daniela');
+        console.log(u.get_nome());
+
+        </script>    
+    </body>
+</html>
